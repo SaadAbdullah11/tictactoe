@@ -51,7 +51,7 @@ def draw_figures():
             elif board[row][col]==2:
                 pygame.draw.line(screen, CROSS_COLOR,(col*200+SPACE,row*200+200-SPACE),
                                  (col*200+200-SPACE, row*200 +SPACE ),CROSS_WIDTH)
-                pygame.draw.line(screen, CROSS_COLOR,(col*200+SPACE),
+                pygame.draw.line(screen, CROSS_COLOR,(col*200+SPACE,row*200+SPACE),
                                  (col*200+200-SPACE, row*200+200-SPACE),CROSS_WIDTH)
             
 def mark_square(row,col,player):
@@ -67,13 +67,6 @@ def is_board_full():
                 return False
     return True
 
-print(is_board_full())
-# marking all the squares
-for row in range(BOARD_ROWS):
-    for col in range(BOARD_COLS):
-        mark_square(row,col,1)
-# row is full -True
-print(is_board_full())
 
 def check_win(player):
     # vertical win check
@@ -133,11 +126,11 @@ def draw_desc_diagonal(player):
         color=CROSS_COLOR
     
     pygame.draw.line(screen, color, (15,15), (WIDTH-15,HEIGHT-15),15)
-player=1    
+
 def restart():
     screen.fill(BG_COLOR)
     draw_lines()
-    player
+    player=1
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
             board[row][col]=0
@@ -170,7 +163,7 @@ while True:
                 draw_figures()
         
         if event.type==pygame.KEYDOWN:
-              if event.key==pygame.K_r:
+              if event.key==pygame.K_LEFT:
                   restart()
     pygame.display.update()
-print(board)
+
