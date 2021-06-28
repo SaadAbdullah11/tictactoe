@@ -142,7 +142,7 @@ while True:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             sys.exit()
-        if event.type==pygame.MOUSEBUTTONDOWN and True:
+        if event.type==pygame.MOUSEBUTTONDOWN and not game_over:
         # in the tutorial,game_over is typed at the place of True   
             mouseX=event.pos[0] #x
             mouseY=event.pos[1] #y
