@@ -4,7 +4,7 @@ import numpy as np
 pygame.init()
     
 WIDTH=600
-HEIGHT=600
+HEIGHT=WIDTH
 
 RED=(255,0,0)
 BG_COLOR=(20,200,35)
@@ -14,7 +14,7 @@ LINE_COLOR=(23,145,135)
 
 BOARD_ROWS=3
 BOARD_COLS=3
-
+SQUARE_SIZE=WIDTH//BOARD_COLS
 CIRCLE_RADIUS=60
 CIRCLE_WIDTH=15
 CIRCLE_COLOR=(239,231,200)
@@ -34,20 +34,20 @@ board=np.zeros((BOARD_ROWS, BOARD_COLS))
 
 def draw_lines():
     #1st horizontal
-    pygame.draw.line(screen, LINE_COLOR, (0,200), (600,200) , LINE_WIDTH)
+    pygame.draw.line(screen, LINE_COLOR, (0,SQUARE_SIZE), (WIDTH,SQUARE_SIZE) , LINE_WIDTH)
     #2nd horizontal
-    pygame.draw.line(screen, LINE_COLOR, (0,400), (600,400) , LINE_WIDTH)
+    pygame.draw.line(screen, LINE_COLOR, (0,400), (WIDTH,400) , LINE_WIDTH)
     #1st vertical
-    pygame.draw.line(screen, LINE_COLOR, (200,0), (200,600) , LINE_WIDTH)
+    pygame.draw.line(screen, LINE_COLOR, (SQUARE_SIZE,0), (200, WIDTH) , LINE_WIDTH)
     #2nd vertical
-    pygame.draw.line(screen, LINE_COLOR, (400,0), (400,600) , LINE_WIDTH)
+    pygame.draw.line(screen, LINE_COLOR, (400,0), (400,WIDTH) , LINE_WIDTH)
 
 def draw_figures():
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
             if board[row][col]==1:
                 pygame.draw.circle(screen,CIRCLE_COLOR,
-                                   (int(col * 200 + 100),int(row * 200 + 100)),CIRCLE_RADIUS, CIRCLE_WIDTH)
+                                   (int(col * SQUARE_SIZE + SQUARE_SIZE//2),int(row * SQUARE_SIZE + SQUARE_SIZE//2)),CIRCLE_RADIUS, CIRCLE_WIDTH)
             elif board[row][col]==2:
                 pygame.draw.line(screen, CROSS_COLOR,(col*200+SPACE,row*200+200-SPACE),
                                  (col*200+200-SPACE, row*200 +SPACE ),CROSS_WIDTH)
