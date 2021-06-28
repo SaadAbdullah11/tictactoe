@@ -15,12 +15,12 @@ LINE_COLOR=(23,145,135)
 BOARD_ROWS=3
 BOARD_COLS=3
 SQUARE_SIZE=WIDTH//BOARD_COLS
-CIRCLE_RADIUS=60
+CIRCLE_RADIUS=SQUARE_SIZE//3
 CIRCLE_WIDTH=15
 CIRCLE_COLOR=(239,231,200)
 
 CROSS_WIDTH=25
-SPACE=55
+SPACE=SQUARE_SIZE//4
 CROSS_COLOR=(66,66,66)
 
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -146,8 +146,8 @@ while True:
         # in the tutorial,game_over is typed at the place of True   
             mouseX=event.pos[0] #x
             mouseY=event.pos[1] #y
-            clicked_row=int(mouseY // 200)
-            clicked_col=int(mouseX // 200)
+            clicked_row=int(mouseY // SQUARE_SIZE)
+            clicked_col=int(mouseX // SQUARE_SIZE)
             
             if available_square(clicked_row,clicked_col):
                 if player==1:
@@ -165,5 +165,6 @@ while True:
         if event.type==pygame.KEYDOWN:
               if event.key==pygame.K_LEFT:
                   restart()
+                  game_over=False
     pygame.display.update()
 
